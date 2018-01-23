@@ -35,4 +35,4 @@ Actual Value of Investment	      $147.47
 
 Annual Return	                    1.33%  (YUCK!)
 
-Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off putting my funds in an index fund on Robinhood. 
+Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off putting my funds in an index fund on Robinhood (20%+ returns). 
