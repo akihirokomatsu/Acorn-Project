@@ -19,10 +19,15 @@ Steps:
 7) calculated compounding returns with Acorn costs
 
 Summary Findings:
-Nominal Investment	              $145.53 
+
+Nominal Investment	              $145.53
+
 Nominal Value of Investment EOY	  $160.73 
+
 Compounding Acorn Fees	          $13.26
+
 Actual Value of Investment	      $147.47 
+
 Annual Return	                    1.33%  (YUCK!)
 
 
