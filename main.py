@@ -10,8 +10,8 @@ processedfilename = 'cc_transactions_parsed.txt'
 with open(processedfilename, 'w') as myfile:
   with open(rawfilename) as f:
     for line in f:
-      r_split_lines = line.rsplit(' ', 1)[1]
       date_split = line.split(' ', 1)[0]
+      r_split_lines = line.rsplit(' ', 1)[1]
       new_line = date_split + ' ' + r_split_lines
     
       #mid_split = line.split() --try to slugify the middle portion 
