@@ -7,7 +7,7 @@ Steps:
 1) downloaded monthly Bank of America credit card statements of 2017
 2) copied records of credit card transactions into .txt file called 'cc_transactions.txt'
 --python portion
-3) used python script to parse records and grab only the Date and Amount
+3) used python script (main.py) to parse records and grab only the Date and Amount
 4) exported parsed records to a new .txt file called 'cc_transactions_parsed.txt'
 -- Excel portion
 5) opened 'cc_transactions_parsed.txt' in Excel, space delimited
