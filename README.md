@@ -41,5 +41,11 @@ Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off s
 
 # Begin readme edit
 
+After my initial findings, I wanted to improve my code to make it more usable and flexible.
 
+Changes:
+- access files via computer directory
+- regular expression to detect records of date, description, and amount from files
+- create pandas dataframe with date, description, amount as headers
+- to be continued...
 
