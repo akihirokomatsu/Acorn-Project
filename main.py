@@ -4,6 +4,7 @@ import pandas as pd
 import os
 import datetime as dt
 
+# regular expression that will scan each credit card statement and find exactly what I want in the statements
 p = re.compile('^(\s+)(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
 
 my_Files = ['eStmt_2017-01-22.txt', 'eStmt_2017-02-22.txt','eStmt_2017-03-22.txt', 'eStmt_2017-04-22.txt',
