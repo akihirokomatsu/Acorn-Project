@@ -1,6 +1,10 @@
 # Acorn-Project
+# The idea is the same as the master branch, except only python will be used (see below original readme)
+
 Trying to find how much money Acorn would have made me last year
+
 Source: Bank of America monthly credit card statements
+
 Tools: python, Excel
 
 Steps:
@@ -36,3 +40,9 @@ Actual Value of Investment	      $147.47
 Annual Return	                    1.33%  (YUCK!)
 
 Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off putting my funds in an index fund on Robinhood (20%+ returns). 
+
+
+# Begin readme edit
+
+
+
