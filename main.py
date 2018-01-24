@@ -3,6 +3,8 @@ import re
 import pandas as pd
 import os
 import datetime as dt
+from dateutil import parser
+import math
 
 # regular expression that matches the exact pattern in each bank statement
 p = re.compile('^(\s+)(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
@@ -25,10 +27,15 @@ for file in my_Files:
                 new_line = [m.group(2), m.group(6), m.group(12)]
                 results.append(new_line)
 
-#set up dataframe
-headers = ['Transaction_Date', 'Description', 'Amount']
+# set up dataframe
+headers = ['Trans_Dt', 'Descr', 'Amt']
 df = pd.DataFrame(results)
 df.columns = headers
-#print (df)
-            
-            
+
+#df['Trans_Dt'] = parser.parse(df['Trans_Dt'])
+
+# create new column, which is 'Amount' rounded up
+df['Amt_Rounded'] = math.ceil(df['Amt'])
+
+# create new column, the difference between Amount and Amount_Rounded 
+df['Amt_Invested'] = df['Amt_Rounded']-df['Amt']
