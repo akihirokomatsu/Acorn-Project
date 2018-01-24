@@ -27,20 +27,17 @@ Steps:
     Compounded_Amt: value of Amt_Invested compounded based on SPY daily returns
 7) calculated compounding returns with Acorn costs
 
-Summary Findings:
+How much Acorn invested $145.53
 
-Nominal Investment	              $145.53
+Value of investment EOY (without Acorn fees) $160.73
 
-Nominal Value of Investment EOY	  $160.73 
+Compounding Acorn Fees $13.26
 
-Compounding Acorn Fees	          $13.26
+Actual Value of Investment	$147.47
 
-Actual Value of Investment	      $147.47 
+Annual Return	1.33% (YUCK!)
 
-Annual Return	                    1.33%  (YUCK!)
-
-Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off putting my funds in an index fund on Robinhood (20%+ returns). 
-
+Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off setting aside money initially and putting it in an index fund, which is less costly than Acorn's fees.
 
 # Begin readme edit
 
