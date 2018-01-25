@@ -47,7 +47,8 @@ Changes:
 - access files via computer directory
 - regular expression to detect records of date, description, and amount from files
 - create pandas dataframe with date, description, amount as headers
-- to be continued...
+- create columns such as amount rounded, diff
+- get rid of records that are credit card payments not transactions
 
 - other thoughts: grab the daily closing stock prices of an index fund, match the date with the dates in dataframe, track the percent changes
 - parse the description column, try to understand spending habits
