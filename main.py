@@ -49,6 +49,8 @@ df.Amt_Rounded = round(df.Amt_Rounded)
 # create new column, the difference between Amount and Amount_Rounded 
 df['Amt_Invested'] = df.Amt_Rounded - df.Amt
 
-
-#df['Trans_Dt'] = parser.parse(df['Trans_Dt'])
-df.Amt = df.Amt.astype(float)
+# import SPY price info
+SPY_file = 'SPY.csv'
+SPY_data = pd.read_csv(SPY_file)
+SPY_df = pd.DataFrame(SPY_data)
+SPY_df['Adj Close'] = SPY_df['Adj Close'].astype(float)
