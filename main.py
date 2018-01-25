@@ -7,7 +7,6 @@ from dateutil import parser
 import math
 import io
 
-
 # regular expressiona that matches the exact patterns in each bank statement
 p = re.compile('^(\s+)(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
 q = re.compile('^(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
@@ -34,19 +33,19 @@ for file in my_Files:
             elif m2:
                 # group(1)= transaction date; group(5)= transaction description; group(11)= transaction amount
                 new_line2 = [m2.group(1), m2.group(5), m2.group(11)]
-                results.append(new_line2)
-            
+                results.append(new_line2)           
             
 # set up dataframe
-headers = ['Trans_Dt', 'Descr', 'Amt']
+headers = ['Trans_Dt', 'Description', 'Amt']
 df = pd.DataFrame(results)
 df.columns = headers
-
+df['Trans_Dt'] = df['Trans_Dt'].astype(str) + '/2017'
+df['Trans_Dt'] = pd.to_datetime(df['Trans_Dt'], format='%m/%d/%Y')
 df.Amt = df.Amt.astype(float)
 # create new column, which is 'Amount' rounded up
 df['Amt_Rounded'] = df.Amt+0.49
+#diff between amt and amount rounded is what Acorn is investing
 df.Amt_Rounded = round(df.Amt_Rounded)
-# create new column, the difference between Amount and Amount_Rounded 
 df['Amt_Invested'] = df.Amt_Rounded - df.Amt
 
 # import SPY price info
