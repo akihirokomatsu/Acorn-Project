@@ -53,3 +53,8 @@ SPY_file = 'SPY.csv'
 SPY_data = pd.read_csv(SPY_file)
 SPY_df = pd.DataFrame(SPY_data)
 SPY_df['Adj Close'] = SPY_df['Adj Close'].astype(float)
+SPY_df['Date'] = pd.to_datetime(SPY_df['Date'], format='%m/%d/%Y')
+
+# merge df with SPY_df on Date columns
+df_master = pd.merge(df, SPY_df, left_on='Trans_Dt', right_on='Date', how='left')
+
