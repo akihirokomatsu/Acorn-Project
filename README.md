@@ -49,3 +49,6 @@ Changes:
 - create pandas dataframe with date, description, amount as headers
 - to be continued...
 
+- other thoughts: grab the daily closing stock prices of an index fund, match the date with the dates in dataframe, track the percent changes
+- parse the description column, try to understand spending habits
+- graph and plot
