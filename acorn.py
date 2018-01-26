@@ -47,6 +47,8 @@ df['Amt_Rounded'] = df.Amt+0.49
 #diff between amt and amount rounded is what Acorn is investing
 df.Amt_Rounded = round(df.Amt_Rounded)
 df['Amt_Invested'] = df.Amt_Rounded - df.Amt
+# drop records that are payments of credit card bills
+df = df[df.Description != 'PAYMENT - THANK YOU                     ']
 
 # import SPY price info
 SPY_file = 'SPY.csv'
