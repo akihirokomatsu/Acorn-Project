@@ -1,8 +1,8 @@
 # Acorn-Project
 
-Trying to find how much money Acorn would have made me last year
+Trying to find how much money Acorn would have made me last year -- 
 
-Source: Bank of America monthly credit card statements
+Source: my Bank of America monthly credit card statements
 
 Tools: python, Excel
 
@@ -38,17 +38,13 @@ Annual Return	1.33% (YUCK!)
 
 Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off setting aside money initially and putting it in an index fund, which is less costly than Acorn's fees.
 
-# Begin readme edit
+# Readme edit
 
-After my initial findings, I wanted to improve my code to make it more usable and flexible.
+After my initial findings, I wanted to improve my code to make it more usable and flexible. I also wanted use pandas Dataframe rather than Excel
 
 Changes:
 - access files via computer directory
 - regular expression to detect records of date, description, and amount from files
-- create pandas dataframe with date, description, amount as headers
-- create columns such as amount rounded, diff
-- get rid of records that are credit card payments not transactions
-
-- other thoughts: grab the daily closing stock prices of an index fund, match the date with the dates in dataframe, track the percent changes
-- parse the description column, try to understand spending habits
-- graph and plot
+- create pandas dataframe with columns: date, description, amount, amount rounded, etc. 
+- find the avg daily return of SPY, principal investment, acorn fees, final value, annual return
+- graphical visualizations of $SPY vs return from acorn
