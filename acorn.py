@@ -58,7 +58,7 @@ df = df[df.Trans_Dt != '12/31/2017']
 
 # add column with number of compounding days
 last_day = pd.to_datetime('12/31/2017', format='%m/%d/%Y')
-df['Compounding_Days'] = (last_day-df['Trans_Dt']).dt.days                 ']
+df['Compounding_Days'] = (last_day-df['Trans_Dt']).dt.days
 
 # calc avg daily returns of SPY
 SPY_2017 = 1.2169
