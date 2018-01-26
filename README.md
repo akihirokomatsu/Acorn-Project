@@ -40,7 +40,7 @@ Conclusion: Acorn's $1 monthly fee ate into my annual return. I was better off s
 
 # Readme edit
 
-After my initial findings, I wanted to improve my code to make it more usable and flexible. I also wanted use pandas Dataframe rather than Excel
+After my initial findings, I wanted to improve my code to make it more usable and flexible. I also wanted use pandas Dataframes rather than Excel
 
 Changes:
 - access files via computer directory
