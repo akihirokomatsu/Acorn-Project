@@ -3,7 +3,6 @@ import re
 import pandas as pd
 import os
 import datetime as dt
-import math
 import io
 import numpy as np
 import matplotlib.pyplot as plt
@@ -93,3 +92,5 @@ ValueAdded = FinalValue-principal_investment
 print ('value added in 2017 = $' + str(ValueAdded))
 AnnualRet = 100*ValueAdded/principal_investment
 print ('annnual return = ' + str(AnnualRet) + '%')
+
+# 
