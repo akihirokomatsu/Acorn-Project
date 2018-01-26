@@ -3,14 +3,14 @@ import re
 import pandas as pd
 import os
 import datetime as dt
-from dateutil import parser
 import math
 import io
+import numpy as np
+import matplotlib.pyplot as plt
 
 # regular expressiona that matches the exact patterns in each bank statement
 p = re.compile('^(\s+)(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
 q = re.compile('^(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
-
 
 my_Files = ['eStmt_2017-01-22.txt', 'eStmt_2017-02-22.txt','eStmt_2017-03-22.txt', 'eStmt_2017-04-22.txt',
             'eStmt_2017-05-22.txt', 'eStmt_2017-06-22.txt', 'eStmt_2017-07-22.txt', 'eStmt_2017-08-22.txt', 
@@ -39,24 +39,57 @@ for file in my_Files:
 headers = ['Trans_Dt', 'Description', 'Amt']
 df = pd.DataFrame(results)
 df.columns = headers
+
 df['Trans_Dt'] = df['Trans_Dt'].astype(str) + '/2017'
 df['Trans_Dt'] = pd.to_datetime(df['Trans_Dt'], format='%m/%d/%Y')
+
 df.Amt = df.Amt.astype(float)
+
 # create new column, which is 'Amount' rounded up
 df['Amt_Rounded'] = df.Amt+0.49
+
 #diff between amt and amount rounded is what Acorn is investing
 df.Amt_Rounded = round(df.Amt_Rounded)
 df['Amt_Invested'] = df.Amt_Rounded - df.Amt
-# drop records that are payments of credit card bills
+
+# drop records that are payments of credit card bills, drop records that are actually 2016 transactions
 df = df[df.Description != 'PAYMENT - THANK YOU                     ']
+df = df[df.Trans_Dt != '12/22/2017']
+df = df[df.Trans_Dt != '12/31/2017']
 
-# import SPY price info
-SPY_file = 'SPY.csv'
-SPY_data = pd.read_csv(SPY_file)
-SPY_df = pd.DataFrame(SPY_data)
-SPY_df['Adj Close'] = SPY_df['Adj Close'].astype(float)
-SPY_df['Date'] = pd.to_datetime(SPY_df['Date'], format='%m/%d/%Y')
+# add column with number of compounding days
+last_day = pd.to_datetime('12/31/2017', format='%m/%d/%Y')
+df['Compounding_Days'] = (last_day-df['Trans_Dt']).dt.days                 ']
 
-# merge df with SPY_df on Date columns
-df_master = pd.merge(df, SPY_df, left_on='Trans_Dt', right_on='Date', how='left')
+# calc avg daily returns of SPY
+SPY_2017 = 1.2169
+daily = (SPY_2017**(1/365))-1
 
+principal_investment = sum(df['Amt_Invested'])
+
+# create column called Compounded_Amt
+df['Compounded_Amt'] = df['Amt_Invested']*(1+daily)**df['Compounding_Days']
+sum_CompoundedAmt = sum(df['Compounded_Amt'])
+
+# compute future value of acorn fees
+acorn_dates = pd.to_datetime(['01/31/2017', '02/28/2017', '03/31/2017', '04/30/2017','05/31/2017','06/30/2017',
+               '07/31/2017','08/31/2017','09/30/2017','10/31/2017', '11/30/2017', '12/31/2017'], format='%m/%d/%Y')
+monthlycharge = [1.00]*12
+acorn_df = pd.DataFrame(data=acorn_dates, columns=['ChargeDate'])
+acorn_df['Fees'] = monthlycharge
+acorn_df['CompoundingDays'] = (last_day-acorn_df['ChargeDate']).dt.days
+acorn_df['FVFees'] = acorn_df['Fees']*(1+daily)**acorn_df['CompoundingDays']
+
+AcornTotalCost = sum(acorn_df['FVFees'])
+
+# Calculate returns of Acorn
+print ('average daily return of SPY = ' + str(daily*100) + '%')
+print ('principal investment in 2017 = $' + str(principal_investment))
+print ('value of my investment before fees = $' + str(sum_CompoundedAmt))
+print ('fees charged = $' + str(AcornTotalCost))
+FinalValue = sum_CompoundedAmt - AcornTotalCost
+print ('final value of investment in 2017 = $' + str(FinalValue))
+ValueAdded = FinalValue-principal_investment
+print ('value added in 2017 = $' + str(ValueAdded))
+AnnualRet = 100*ValueAdded/principal_investment
+print ('annnual return = ' + str(AnnualRet) + '%')
