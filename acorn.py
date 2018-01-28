@@ -7,7 +7,7 @@ import io
 import numpy as np
 import matplotlib.pyplot as plt
 
-# regular expressiona that matches the exact patterns in each bank statement
+# regular expressions that matches the exact patterns in each bank statement
 p = re.compile('^(\s+)(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
 q = re.compile('^(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
 
@@ -70,7 +70,7 @@ principal_investment = sum(df['Amt_Invested'])
 df['Compounded_Amt'] = df['Amt_Invested']*(1+daily)**df['Compounding_Days']
 sum_CompoundedAmt = sum(df['Compounded_Amt'])
 
-# compute future value of acorn fees
+# compute future value of acorns fees
 acorn_dates = pd.to_datetime(['01/31/2017', '02/28/2017', '03/31/2017', '04/30/2017','05/31/2017','06/30/2017',
                '07/31/2017','08/31/2017','09/30/2017','10/31/2017', '11/30/2017', '12/31/2017'], format='%m/%d/%Y')
 monthlycharge = [1.00]*12
@@ -81,7 +81,7 @@ acorn_df['FVFees'] = acorn_df['Fees']*(1+daily)**acorn_df['CompoundingDays']
 
 AcornTotalCost = sum(acorn_df['FVFees'])
 
-# Calculate returns of Acorn
+# Calculate returns of Acorns
 print ('average daily return of SPY = ' + str(daily*100) + '%')
 print ('principal investment in 2017 = $' + str(principal_investment))
 print ('value of my investment before fees = $' + str(sum_CompoundedAmt))
