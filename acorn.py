@@ -36,19 +36,20 @@ df.columns = headers
 df['Trans_Dt'] = df['Trans_Dt'].astype(str) + '/2017'
 df['Trans_Dt'] = pd.to_datetime(df['Trans_Dt'], format='%m/%d/%Y')
 
+# drop records that are payments of credit card bills, drop records that are actually 2016 transactions
+df = df[df.Description != 'PAYMENT - THANK YOU                     ']
+df = df[df.Trans_Dt != '12/22/2017']
+df = df[df.Trans_Dt != '12/31/2017']
+df = df.reset_index(drop=True)
+df = df.sort_values(by='Trans_Dt')
 df.Amt = df.Amt.astype(float)
 
 # create new column, which is 'Amount' rounded up
 df['Amt_Rounded'] = df.Amt+0.49
 
-#diff between amt and amount rounded is what Acorn is investing
+#diff between amt and amount rounded is what Acorns is investing
 df.Amt_Rounded = round(df.Amt_Rounded)
 df['Amt_Invested'] = df.Amt_Rounded - df.Amt
-
-# drop records that are payments of credit card bills, drop records that are actually 2016 transactions
-df = df[df.Description != 'PAYMENT - THANK YOU                     ']
-df = df[df.Trans_Dt != '12/22/2017']
-df = df[df.Trans_Dt != '12/31/2017']
 
 # add column with number of compounding days
 last_day = pd.to_datetime('12/31/2017', format='%m/%d/%Y')
@@ -57,12 +58,12 @@ df['Compounding_Days'] = (last_day-df['Trans_Dt']).dt.days
 # calc avg daily returns of SPY
 SPY_2017 = 1.2169
 daily = (SPY_2017**(1/365))-1
-
 principal_investment = sum(df['Amt_Invested'])
 
 # create column called Compounded_Amt
 df['Compounded_Amt'] = df['Amt_Invested']*(1+daily)**df['Compounding_Days']
 sum_CompoundedAmt = sum(df['Compounded_Amt'])
+df['cumSumCompoundedAmt'] = df['Compounded_Amt'].cumsum()
 
 # compute future value of acorns fees
 acorn_dates = pd.to_datetime(['01/31/2017', '02/28/2017', '03/31/2017', '04/30/2017','05/31/2017','06/30/2017',
@@ -86,3 +87,8 @@ ValueAdded = FinalValue-principal_investment
 print ('value added in 2017 = $' + str(ValueAdded))
 AnnualRet = 100*ValueAdded/principal_investment
 print ('annnual return = ' + str(AnnualRet) + '%')
+
+plt.plot(365 - df['Compounding_Days'], df['cumSumCompoundedAmt'])
+plt.xlabel('Day')
+plt.ylabel('Dollar Value of Investment')
+plt.show()
