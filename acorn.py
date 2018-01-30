@@ -75,7 +75,7 @@ acorn_df['FVFees'] = acorn_df['Fees']*(1+daily)**acorn_df['CompoundingDays']
 
 AcornTotalCost = sum(acorn_df['FVFees'])
 
-# Calculate returns of Acorns
+# Calculate and print key measures of Acorns investment
 print ('average daily return of SPY = ' + str(daily*100) + '%')
 print ('principal investment in 2017 = $' + str(principal_investment))
 print ('value of my investment before fees = $' + str(sum_CompoundedAmt))
@@ -86,5 +86,3 @@ ValueAdded = FinalValue-principal_investment
 print ('value added in 2017 = $' + str(ValueAdded))
 AnnualRet = 100*ValueAdded/principal_investment
 print ('annnual return = ' + str(AnnualRet) + '%')
-
-# 
