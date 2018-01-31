@@ -6,6 +6,8 @@ import datetime as dt
 import io
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
 
 # regular expressions that matches the exact patterns in each bank statement
 p = re.compile('^(\s*)(\d{2}/\d{2})(\s+)(\d{2}/\d{2})(\s+)(.{40})(\s+)(\d+)(\s+)(\d+)(\s+)([0-9.]+)$')
@@ -88,7 +90,14 @@ print ('value added in 2017 = $' + str(ValueAdded))
 AnnualRet = 100*ValueAdded/principal_investment
 print ('annnual return = ' + str(AnnualRet) + '%')
 
+
+""" practice plotting data """
 plt.plot(365 - df['Compounding_Days'], df['cumSumCompoundedAmt'])
-plt.xlabel('Day')
+plt.xlabel('Day #')
 plt.ylabel('Dollar Value of Investment')
+plt.show()
+
+_ = sns.swarmplot(x='Trans_Dt', y='Amt_Invested', data=df)
+_ = plt.xlabel('Transaction Date')
+_ = plt.ylabel('$ Amount Invested')
 plt.show()
