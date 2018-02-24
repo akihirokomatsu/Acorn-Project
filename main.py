@@ -99,5 +99,5 @@ plt.show()
 
 _ = sns.swarmplot(x='Trans_Dt', y='Amt_Invested', data=df)
 _ = plt.xlabel('Transaction Date')
-_ = plt.ylabel('$ Amount Invested')
+_ = plt.ylabel('$ Amount Invested From 1 Transaction')
 plt.show()
