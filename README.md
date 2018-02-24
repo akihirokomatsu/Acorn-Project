@@ -1,6 +1,6 @@
 # Acorn-Project
 
-Trying to find how much money Acorn would have made me last year -- 
+Simulating how much money Acorns would have made for me in 2017 --
 
 Source: my Bank of America monthly credit card statements
 
