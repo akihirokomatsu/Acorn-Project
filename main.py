@@ -101,3 +101,7 @@ _ = sns.swarmplot(x='Trans_Dt', y='Amt_Invested', data=df)
 _ = plt.xlabel('Transaction Date')
 _ = plt.ylabel('$ Amount Invested From 1 Transaction')
 plt.show()
+
+"""export data into csv file"""
+df.to_csv('acorns_data.csv', encoding='utf-8', index=False)
+print ('file created')
