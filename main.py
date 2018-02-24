@@ -94,7 +94,7 @@ print ('annnual return = ' + str(AnnualRet) + '%')
 """ practice plotting data """
 plt.plot(365 - df['Compounding_Days'], df['cumSumCompoundedAmt'])
 plt.xlabel('Day #')
-plt.ylabel('Dollar Value of Investment')
+plt.ylabel('Value of Portfolio')
 plt.show()
 
 _ = sns.swarmplot(x='Trans_Dt', y='Amt_Invested', data=df)
